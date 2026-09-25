@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Blog extends Model
+{
+    protected $fillable = [
+        'title',
+        'slug',
+        'category',
+        'excerpt',
+        'content',
+        'image',
+        'status',
+    ];
+
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
+    }
+}
